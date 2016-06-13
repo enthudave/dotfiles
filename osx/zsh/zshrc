@@ -90,14 +90,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias emc="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias emc="/Applications/Emacs.app/Contents/MacOS/Emacs $@"
 alias buco="ssh enthu@192.168.0.164"
-alias tlp="workon timeline-project"
-alias rng="workon rango;cd tango_with_django_project"
 alias ecd="/Applications/Eclipse.app/Contents/Eclipse/eclimd"
-alias ezsh="vim ~/.zshrc"
+alias e-e="emc ~/.spacemacs"
+alias e-v="vim ~/.vimrc"
+alias e-z="vim ~/.zshrc"
+alias e-ze="vim ~/.zshenv"
 
 # enable rvm tab completion
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
