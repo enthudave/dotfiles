@@ -26,13 +26,14 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'FuzzyFinder'
 Plugin 'L9'
 
+Plugin 'dietsche/vim-lastplace'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jpalardy/vim-slime.git'
 Plugin 'thinca/vim-quickrun'
 
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'itchyny/landscape.vim'
-Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'godlygeek/csapprox'
 
 Plugin 'tpope/vim-surround'
@@ -53,19 +54,28 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
 
 Plugin 'vim-perl/vim-perl'
+
 Plugin 'hdima/python-syntax'
+Plugin 'klen/python-mode'
+
+Plugin 'vim-ruby/vim-ruby'
+
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'luochen1990/rainbow' "rainbow parentheses
 
-Plugin 'dietsche/vim-lastplace'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+filetype plugin indent on    " required
 syntax on
-filetype plugin indent on
-"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 "
@@ -94,9 +104,12 @@ filetype plugin indent on
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 let g:slime_python_ipython = 1
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 
 " nerdtree
 let NERDTreeHijackNetrw=1
+let NERDTreeQuitOnOpen=1
 
 " rainbow
 " (rainbow parentheses plugin) 0 if you want to enable it later via :RainbowToggle
@@ -123,7 +136,7 @@ autocmd FileType perl set autoindent|set smartindent
 autocmd FileType perl set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 
 " syntastic
-
+"
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
@@ -133,7 +146,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
 " ctrlp
-let g:ctrlp_map = '<leader>pp'
+let g:ctrlp_map = '<C-p>'
 " From Valloric's vimrc
 " Use Vim's cwd
 let g:ctrlp_working_path_mode = 0
@@ -146,7 +159,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .hg
       \ --ignore .un~
       \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
+     \ --ignore "**/*.pyc"
       \ -g ""'
 
 " YouCompleteMe
@@ -154,8 +167,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
-let g:clang_library_path='Users/david/.vim/bundle/YouCompleteMe/third_party/ycmd/libclang.dylib'
-let g:ycm_python_binary_path = 'python'
 
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -165,129 +176,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
-" eclim
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimLogLevel="trace"
-
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'virtualenv', 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'ctrlpmark': 'CtrlPMark',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \   'virtualenv' : 'MyVirtualenv'
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \   'virtualenv': 'warning'
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
-
-function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
-
-function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
-      let branch = fugitive#head()
-      return branch !=# '' ? mark.branch : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-    call lightline#link('iR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
-
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-  let g:lightline.ctrlp_regex = a:regex
-  let g:lightline.ctrlp_prev = a:prev
-  let g:lightline.ctrlp_item = a:item
-  let g:lightline.ctrlp_next = a:next
-  return lightline#statusline(0)
-endfunction
-
-function! CtrlPStatusFunc_2(str)
-  return lightline#statusline(0)
-endfunction
-
-function! MyVirtualenv()
-  if &filetype == "python"
-    let _ = virtualenv#statusline()
-    return strlen(_) ? '<'._.'>' : ''
-  endif
-  return ''
-endfunction
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "###############################################################################
 
@@ -303,30 +191,46 @@ endfunction
 " Settings
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+set encoding=utf-8
+set termencoding=utf-8
 
-"set autoindent
+set autoindent
 set backspace=indent,eol,start
 set cindent
 set cursorline
 set expandtab
 set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 set hidden
+set history=1000
+set incsearch
 set laststatus=2
 set nobackup
 set noerrorbells
 set noshowmode
 set number
+set nowrap
 set ruler
 set showtabline=2
 set scrolloff=5
 set shiftwidth=2
-"set smartindent
+set smartcase
+set smartindent
 set smarttab
+set softtabstop=2
 set tabstop=2
+set tw=80
 set undofile
 set visualbell
 set wildmenu
 
+
+"don't create swap files in Dropbox
+autocmd BufNewFile,BufRead *
+  \ if expand('%:~') =~ '^\~/Dropbox' |
+  \   set noswapfile |
+  \ else |
+  \   set swapfile |
+  \ endif
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "###############################################################################
 
@@ -349,6 +253,40 @@ set background=dark
 colorscheme landscape
 
 let python_highlight_all = 1
+
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline_detect_modified=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <f7> <Plug>AirlineSelectPrevTab
+nmap <f9> <Plug>AirlineSelectNextTab
+let g:airline_section_z = '%3p%% |%4l% :%3v'
 
 highlight CursorLine ctermbg=234 guibg=#232728
 autocmd InsertEnter * highlight CursorLine ctermbg=17 guibg=#00005f
@@ -380,20 +318,21 @@ endif
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-imap § <delete>
+imap <C-d> <delete>
 nnoremap <BS> :
 
 "<Leader> mappings
-let maplocalleader = "§"
-let mapleader = "\<SPACE>"
-nnoremap <Leader>. :e ~/.vimrc<cr>
-nnoremap <Leader>b :bn<cr>
-nnoremap <Leader>g :YcmCompleter GoTo<cr>
-nnoremap <Leader>n :NERDTreeToggle<CR>
-"let g:ctrlp_map = '<leader>p'
-nnoremap <Leader>q :wqa<CR>
-nnoremap <Leader>pr :CtrlPMRU<CR>
-nnoremap <Leader>w :wincmd p<CR>
+let maplocalleader = "\<SPACE>"
+nnoremap <tab> :b#<CR>
+
+map <localleader>. :e ~/.vimrc<cr>
+map <localleader>b :CtrlPBuffer<CR>
+map <localleader>g :YcmCompleter GoTo<CR>
+map <localleader>n :NERDTreeToggle<CR>
+map <localleader>q :wqa<CR>
+map <localleader>r :CtrlPMRU<CR>
+map <localleader>s :SyntasticToggleMode<CR>
+map <localleader>w :wincmd p<CR>
 
 "CONTROL-KEY MOVEMENT"
 imap <C-h> <Left>
@@ -404,6 +343,17 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
 
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "###############################################################################
