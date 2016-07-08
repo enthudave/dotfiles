@@ -1,0 +1,359 @@
+" Vundle  PluginSettings  Settings  GUI  Keybindings
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" __     __               _ _
+" \ \   / /   _ _ __   __| | | ___
+"  \ \ / / | | | '_ \ / _` | |/ _ \
+"   \ V /| |_| | | | | (_| | |  __/
+"    \_/  \__,_|_| |_|\__,_|_|\___|
+"
+" Vundle
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here'vim auto)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'FuzzyFinder'
+Plugin 'L9'
+
+Plugin 'dietsche/vim-lastplace'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jpalardy/vim-slime.git'
+Plugin 'thinca/vim-quickrun'
+
+Plugin 'itchyny/landscape.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'godlygeek/csapprox'
+
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'dbakker/vim-lint'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+
+Plugin 'vim-perl/vim-perl'
+
+Plugin 'hdima/python-syntax'
+Plugin 'klen/python-mode'
+
+Plugin 'vim-ruby/vim-ruby'
+
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'luochen1990/rainbow' "rainbow parentheses
+
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+syntax on
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins<LeftMouse>
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
+
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"        _             _                  _   _   _
+"  _ __ | |_   _  __ _(_)_ __    ___  ___| |_| |_(_)_ __   __ _ ___
+" | '_ \| | | | |/ _` | | '_ \  / __|/ _ \ __| __| | '_ \ / _` / __|
+" | |_) | | |_| | (_| | | | | | \__ \  __/ |_| |_| | | | | (_| \__ \
+" | .__/|_|\__,_|\__, |_|_| |_| |___/\___|\__|\__|_|_| |_|\__, |___/
+" |_|            |___/                                    |___/
+"
+" PluginSettings
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+let g:slime_python_ipython = 1
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+
+" nerdtree
+let NERDTreeHijackNetrw=1
+let NERDTreeQuitOnOpen=1
+
+" rainbow
+" (rainbow parentheses plugin) 0 if you want to enable it later via :RainbowToggle
+" eclim breaks with rainbow active on xml
+let g:rainbow_active = 0
+let g:lisp_rainbow = 1 " rainbow parentheses for Lisp
+
+function RainbowTogglerfunc()
+  if &filetype =~ 'xml'
+    return
+  endif
+  RainbowToggle
+endfunction
+
+autocmd FileType * call RainbowTogglerfunc()
+
+" delimitmate
+" let g:delimitMate_expand_cr = 1
+
+" autoindent
+autocmd FileType perl set autoindent|set smartindent
+
+" 4 space tabs
+autocmd FileType perl set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+
+" syntastic
+"
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+
+" ctrlp
+let g:ctrlp_map = '<C-p>'
+" From Valloric's vimrc
+" Use Vim's cwd
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30'
+" Faster indexing of files; requires having ag (AKA the_silver_searcher)
+" installed.
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .un~
+      \ --ignore .DS_Store
+     \ --ignore "**/*.pyc"
+      \ -g ""'
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_seed_identifiers_with_syntax = 1
+
+" ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-e>"
+let g:UltiSnipsJumpForwardTrigger="<C-f>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
+
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"           _   _   _
+"  ___  ___| |_| |_(_)_ __   __ _ ___
+" / __|/ _ \ __| __| | '_ \ / _` / __|
+" \__ \  __/ |_| |_| | | | | (_| \__ \
+" |___/\___|\__|\__|_|_| |_|\__, |___/
+"                           |___/
+"
+" Settings
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+set encoding=utf-8
+set termencoding=utf-8
+
+set autoindent
+set backspace=indent,eol,start
+set cindent
+set cursorline
+set expandtab
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+set hidden
+set history=1000
+set incsearch
+set laststatus=2
+set nobackup
+set noerrorbells
+set noshowmode
+set number
+set nowrap
+set ruler
+set showtabline=2
+set scrolloff=5
+set shiftwidth=2
+set smartcase
+set smartindent
+set smarttab
+set softtabstop=2
+set tabstop=2
+set tw=80
+set undofile
+set visualbell
+set wildmenu
+
+
+"don't create swap files in Dropbox
+autocmd BufNewFile,BufRead *
+  \ if expand('%:~') =~ '^\~/Dropbox' |
+  \   set noswapfile |
+  \ else |
+  \   set swapfile |
+  \ endif
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
+
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"   ____ _   _ ___
+"  / ___| | | |_ _|
+" | |  _| | | || |
+" | |_| | |_| || |
+"  \____|\___/|___|
+"
+" GUI
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+if !has('gui_running')
+  set t_Co=256
+endif
+
+set background=dark
+colorscheme landscape
+
+let python_highlight_all = 1
+
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline_detect_modified=1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <f7> <Plug>AirlineSelectPrevTab
+nmap <f9> <Plug>AirlineSelectNextTab
+let g:airline_section_z = '%3p%% |%4l% :%3v'
+
+highlight CursorLine ctermbg=234 guibg=#232728
+autocmd InsertEnter * highlight CursorLine ctermbg=17 guibg=#00005f
+autocmd InsertLeave * highlight CursorLine ctermbg=234 guibg=#232728
+
+highlight Cursor guifg=magenta
+autocmd InsertEnter * highlight Cursor guifg=#ff0000
+autocmd InsertLeave * highlight Cursor guifg=magenta guibg=black
+"Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
+
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
+
+
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"  _              _     _           _ _
+" | | _____ _   _| |__ (_)_ __   __| (_)_ __   __ _ ___
+" | |/ / _ \ | | | '_ \| | '_ \ / _` | | '_ \ / _` / __|
+" |   <  __/ |_| | |_) | | | | | (_| | | | | | (_| \__ \
+" |_|\_\___|\__, |_.__/|_|_| |_|\__,_|_|_| |_|\__, |___/
+"           |___/                             |___/
+"
+" Keybindings
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+imap <C-d> <delete>
+nnoremap <BS> :
+
+"<Leader> mappings
+let maplocalleader = "\<SPACE>"
+nnoremap <tab> :b#<CR>
+
+map <localleader>. :e ~/.vimrc<cr>
+map <localleader>b :CtrlPBuffer<CR>
+map <localleader>g :YcmCompleter GoTo<CR>
+map <localleader>n :NERDTreeToggle<CR>
+map <localleader>q :wqa<CR>
+map <localleader>r :CtrlPMRU<CR>
+map <localleader>s :SyntasticToggleMode<CR>
+map <localleader>w :wincmd p<CR>
+
+"CONTROL-KEY MOVEMENT"
+imap <C-h> <Left>
+imap <C-l> <Right>
+imap <C-j> <Down>
+imap <C-k> <Up>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+let g:haskell_tabular = 1
+
+vmap a= :Tabularize /=<CR>
+vmap a; :Tabularize /::<CR>
+vmap a- :Tabularize /-><CR>
+
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
