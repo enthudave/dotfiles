@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=~/.vim/bin:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
