@@ -31,10 +31,12 @@ Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jpalardy/vim-slime.git'
 Plugin 'thinca/vim-quickrun'
 
+Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
 Plugin 'itchyny/landscape.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'godlygeek/csapprox'
+Plugin 'godlygeek/tabular'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-git'
@@ -65,6 +67,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'luochen1990/rainbow' "rainbow parentheses
 
+Plugin 'itchyny/vim-haskell-indent'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
@@ -106,6 +109,7 @@ syntax on
 let g:slime_python_ipython = 1
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+let g:slime_dont_ask_default = 1
 
 " nerdtree
 let NERDTreeHijackNetrw=1
@@ -126,14 +130,17 @@ endfunction
 
 autocmd FileType * call RainbowTogglerfunc()
 
-" delimitmate
-" let g:delimitMate_expand_cr = 1
-
 " autoindent
 autocmd FileType perl set autoindent|set smartindent
 
 " 4 space tabs
 autocmd FileType perl set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+
+" from Valloric's vimrc
+" cindent is a bit too smart for its own good and triggers in text files when
+" you're typing inside parens and then hit enter; it aligns the text with the
+" opening paren and we do NOT want this in text files!
+autocmd FileType text,markdown,gitcommit set nocindent
 
 " syntastic
 "
@@ -208,7 +215,9 @@ set nobackup
 set noerrorbells
 set noshowmode
 set number
+set noswapfile
 set nowrap
+set pastetoggle=<F3>
 set ruler
 set showtabline=2
 set scrolloff=5
@@ -250,12 +259,29 @@ if !has('gui_running')
 endif
 
 set background=dark
-colorscheme landscape
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
+hi Normal ctermbg=none
+hi NonText ctermbg=none
+hi LineNr ctermbg=none
 
 let python_highlight_all = 1
 
+" Highlight Class and Function names
+function! s:HighlightFunctionsAndClasses()
+  syn match cCustomFunc      "\w\+\s*\((\)\@="
+  syn match cCustomClass     "\w\+\s*\(::\)\@="
+
+  hi def link cCustomFunc      Function
+  hi def link cCustomClass     Function
+endfunction
+
+au Syntax * call s:HighlightFunctionsAndClasses()
+
+
 set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=R  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 let g:airline_theme = 'powerlineish'
@@ -335,14 +361,20 @@ map <localleader>s :SyntasticToggleMode<CR>
 map <localleader>w :wincmd p<CR>
 
 "CONTROL-KEY MOVEMENT"
+cnoremap <C-j> <down>
+cnoremap <C-k> <up>
+
 imap <C-h> <Left>
 imap <C-l> <Right>
 imap <C-j> <Down>
 imap <C-k> <Up>
+
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+map <f5> :%SlimeSend<cr>
 
 map <silent> tw :GhcModTypeInsert<CR>
 map <silent> ts :GhcModSplitFunCase<CR>
@@ -354,6 +386,9 @@ let g:haskell_tabular = 1
 vmap a= :Tabularize /=<CR>
 vmap a; :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
+vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+
 
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "###############################################################################
