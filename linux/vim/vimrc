@@ -30,8 +30,10 @@ Plugin 'dietsche/vim-lastplace'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'jpalardy/vim-slime.git'
 Plugin 'thinca/vim-quickrun'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/unite.vim'
 
-Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
+Plugin 'tomasr/molokai'
 Plugin 'itchyny/landscape.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -57,8 +59,8 @@ Plugin 'rdnetto/YCM-Generator'
 
 Plugin 'vim-perl/vim-perl'
 
-Plugin 'hdima/python-syntax'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
+"Plugin 'hdima/python-syntax'
 
 Plugin 'vim-ruby/vim-ruby'
 
@@ -67,13 +69,14 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'luochen1990/rainbow' "rainbow parentheses
 
-Plugin 'itchyny/vim-haskell-indent'
+"Plugin 'vim-scripts/haskell.vim'
+"Plugin 'itchyny/vim-haskell-indent'
+Plugin 'dag/vim2hs'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -123,6 +126,9 @@ let g:lisp_rainbow = 1 " rainbow parentheses for Lisp
 
 function RainbowTogglerfunc()
   if &filetype =~ 'xml'
+    return
+  endif
+  if &filetype =~ 'haskell'
     return
   endif
   RainbowToggle
@@ -223,7 +229,6 @@ set showtabline=2
 set scrolloff=5
 set shiftwidth=2
 set smartcase
-set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
@@ -232,14 +237,6 @@ set undofile
 set visualbell
 set wildmenu
 
-
-"don't create swap files in Dropbox
-autocmd BufNewFile,BufRead *
-  \ if expand('%:~') =~ '^\~/Dropbox' |
-  \   set noswapfile |
-  \ else |
-  \   set swapfile |
-  \ endif
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "###############################################################################
 
@@ -260,18 +257,21 @@ endif
 
 set background=dark
 let g:rehash256 = 1
+colorscheme darkblue
 let g:molokai_original = 1
-colorscheme molokai
 
 let python_highlight_all = 1
 
 " Highlight Class and Function names
 function! s:HighlightFunctionsAndClasses()
-  syn match cCustomFunc      "\w\+\s*\((\)\@="
-  syn match cCustomClass     "\w\+\s*\(::\)\@="
+  if &filetype =~ 'python'
+    syn match cCustomFunc      "\w\+\s*\((\)\@="
+    syn match cCustomClass     "\w\+\s*\(::\)\@="
 
-  hi def link cCustomFunc      Function
-  hi def link cCustomClass     Function
+    hi def link cCustomFunc      Function
+    hi def link cCustomClass     Function
+  endif
+  return
 endfunction
 
 au Syntax * call s:HighlightFunctionsAndClasses()
@@ -315,9 +315,9 @@ highlight CursorLine ctermbg=234 guibg=#232728
 autocmd InsertEnter * highlight CursorLine ctermbg=17 guibg=#00005f
 autocmd InsertLeave * highlight CursorLine ctermbg=234 guibg=#232728
 
-highlight Cursor guifg=magenta
-autocmd InsertEnter * highlight Cursor guifg=#ff0000
-autocmd InsertLeave * highlight Cursor guifg=magenta guibg=black
+highlight Cursor guibg=magenta guifg=black
+autocmd InsertEnter * highlight Cursor guibg=#ff0000
+autocmd InsertLeave * highlight Cursor guibg=magenta guifg=black
 "Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
