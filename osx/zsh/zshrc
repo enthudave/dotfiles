@@ -97,7 +97,7 @@ alias e-e="emc ~/.spacemacs"
 alias e-v="vim ~/.vimrc"
 alias e-z="vim ~/.zshrc"
 alias e-ze="vim ~/.zshenv"
-alias wrk-has="docker run -it -P -v $HOME/projects/beg-has:/home/dev enthudave/vim-haskell"
+alias wrk-has="docker run -it -P -v $HOME/projects/beg-has:/home/dev/project enthudave/vim-haskell"
 
 # enable rvm tab completion
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
