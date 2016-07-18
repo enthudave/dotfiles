@@ -1,0 +1,97 @@
+" Vundle  PluginSettings  Settings  GUI  Keybindings
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" __     __               _ _
+" \ \   / /   _ _ __   __| | | ___
+"  \ \ / / | | | '_ \ / _` | |/ _ \
+"   \ V /| |_| | | | | (_| | |  __/
+"    \_/  \__,_|_| |_|\__,_|_|\___|
+"
+" Vundle
+"###############################################################################
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here'vim auto)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'FuzzyFinder'
+Plugin 'L9'
+
+Plugin 'dietsche/vim-lastplace'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jpalardy/vim-slime.git'
+Plugin 'thinca/vim-quickrun'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/unite.vim'
+
+Plugin 'tomasr/molokai'
+Plugin 'itchyny/landscape.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'godlygeek/csapprox'
+Plugin 'godlygeek/tabular'
+
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'dbakker/vim-lint'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+
+Plugin 'vim-perl/vim-perl'
+
+"Plugin 'klen/python-mode'
+"Plugin 'hdima/python-syntax'
+
+Plugin 'vim-ruby/vim-ruby'
+
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'luochen1990/rainbow' "rainbow parentheses
+
+Plugin 'itchyny/vim-haskell-indent'
+"Plugin 'urso/haskell_syntax.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+syntax on
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins<LeftMouse>
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"###############################################################################
