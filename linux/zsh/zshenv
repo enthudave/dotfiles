@@ -1,0 +1,7 @@
+export LC_ALL=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/enthu/.local/bin"
+export WORKON_HOME=~/Envs
+export PROJECT_HOME=~/Projects
+source /home/enthu/.local/bin/virtualenvwrapper.sh
