@@ -103,6 +103,7 @@ alias dms='docker-machine start'
 alias purge-containers='docker rm $(docker ps -a -q)'
 alias purge-images='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
 alias wrk-has='docker run -it -P -v $HOME/projects/beg-has:/home/dev/project enthudave/vim-haskell'
+alias tmux='tmux -2'
 
 # enable rvm tab completion
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
