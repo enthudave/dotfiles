@@ -69,15 +69,15 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'luochen1990/rainbow' "rainbow parentheses
 
-"Plugin 'vim-scripts/haskell.vim'
-"Plugin 'itchyny/vim-haskell-indent'
-Plugin 'dag/vim2hs'
+Plugin 'itchyny/vim-haskell-indent'
+"Plugin 'urso/haskell_syntax.vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 
+Plugin 'JamshedVesuna/vim-markdown-preview'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -109,6 +109,9 @@ syntax on
 " PluginSettings
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+let vim_markdown_preview_hotkey='<localleader>p'
+let vim_markdown_preview_github=1
+
 let g:slime_python_ipython = 1
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
@@ -253,11 +256,13 @@ set wildmenu
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 if !has('gui_running')
   set t_Co=256
+  "disable 'Background color erase'
+  set t_ut=
 endif
 
 set background=dark
 let g:rehash256 = 1
-colorscheme darkblue
+colorscheme molokai
 let g:molokai_original = 1
 
 let python_highlight_all = 1
