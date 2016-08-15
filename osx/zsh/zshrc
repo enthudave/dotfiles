@@ -67,7 +67,9 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -104,8 +106,12 @@ alias vim='mvim -v'
 alias purge-containers='docker rm $(docker ps -a -q)'
 alias purge-images='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
 alias wrk-has='docker run -it -P -v $HOME/projects/beg-has:/home/dev/project enthudave/vim-haskell'
+alias julia="exec '/Applications/Julia-0.4.6.app/Contents/Resources/julia/bin/julia'"
 
+export TERMINFO="$HOME/.terminfo"
 # enable rvm tab completion
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/.rvm/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
