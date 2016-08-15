@@ -1,11 +1,23 @@
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+export PATH=$HOME/.cabal/bin:$PATH
+
 export PATH=~/.vim/bin:$PATH
+
+# for virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
 source /usr/local/bin/virtualenvwrapper.sh
+
+# automatically added by perl installation
 source ~/perl5/perlbrew/etc/bashrc
 PATH="/Users/david/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/Users/david/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/Users/david/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/david/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/david/perl5"; export PERL_MM_OPT;
+
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
+
+PATH=/Users/david/.stack/snapshots/x86_64-osx/lts-6.7/7.10.3/bin:/Users/david/.stack/programs/x86_64-osx/ghc-7.10.3/bin:$PATH
