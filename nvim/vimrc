@@ -293,7 +293,6 @@ if !has('gui_running')
 
 endif
 
-let g:seoul256_background = 234
 set background=dark
 colorscheme Tomorrow-Night-Eighties
 
