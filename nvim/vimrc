@@ -65,6 +65,8 @@ Plug 'vim-perl/vim-perl'
 
 Plug 'vim-ruby/vim-ruby'
 
+Plug 'vim-scripts/applescript.vim'
+
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
@@ -378,6 +380,7 @@ endif
 augroup vimrc_group
     autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell_scripts/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
     autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell_scripts/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
+    autocmd FileType applescript nnoremap <buffer> <leader>r :w<cr>:T osascript %<cr><cr>
     autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
     autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
     autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
@@ -413,6 +416,7 @@ nnoremap <localleader>. :e ~/.vimrc<cr>
 
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
+    autocmd FileType applescript nnoremap <buffer> <localleader>c I--<esc>
     autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
     autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
