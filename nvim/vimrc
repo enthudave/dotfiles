@@ -107,6 +107,13 @@ syntax on
 "
 "###############################################################################
 "PluginSettings||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+"start an autocmd group for vimrc and clear it, so that you can
+"source your vimrc after you've changed it. And not have your
+"autocmd's defined multiple times.
+augroup vimrc_group
+    autocmd!
+augroup END
+
 let vim_markdown_preview_hotkey='<localleader>p'
 let vim_markdown_preview_github=1
 
@@ -127,10 +134,6 @@ let NERDTreeQuitOnOpen=1
 " AUTO-PAIRS
 " auto-pairs 'imaps' <C-h> but i need it
 let g:AutoPairsMapCh=0
-
-augroup vimrc_group
-    autocmd FileType * RainbowParentheses
-augroup END
 
 " from Valloric's vimrc
 " cindent is a bit too smart for its own good and triggers in text files when
