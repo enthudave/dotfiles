@@ -34,7 +34,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/csapprox'
+"Plug 'godlygeek/csapprox'
 Plug 'godlygeek/tabular'
 
 Plug 'tpope/vim-surround'
@@ -202,6 +202,8 @@ let g:python_host_prog = '/usr/local/bin/python'
 
 if !has('nvim')
     set ttymouse=xterm2
+    set backspace=indent,eol,start
+    set encoding=utf-8
 endif
 
 if exists('neovim_dot_app')
@@ -209,10 +211,8 @@ if exists('neovim_dot_app')
     call MacSetFont("Hack", 14)
 endif
 
-set encoding=utf-8
 set termencoding=utf-8
 
-set backspace=indent,eol,start
 set cursorline
 set guifont=Hack:h14
 set hidden
@@ -232,6 +232,10 @@ set scrolloff=5
 set smartcase
 set undofile
 set wildmenu
+
+augroup vimrc_group
+    au BufRead,BufNewFile *.applescript set filetype=applescript
+augroup END
 
 augroup vimrc_group
     autocmd FileType vim setlocal foldmethod=marker|set tabstop=4|set shiftwidth=4|set expandtab| set softtabstop=4
@@ -299,7 +303,7 @@ if !has('gui_running')
 endif
 
 set background=dark
-colorscheme Tomorrow-Night-Eighties
+colorscheme molokai-enthu
 
 let g:molokai_original = 1
 
@@ -381,9 +385,10 @@ if has ('nvim')
 endif
 
 augroup vimrc_group
-    autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell_scripts/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
-    autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell_scripts/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
-    autocmd FileType applescript nnoremap <buffer> <leader>r :w<cr>:T osascript %<cr><cr>
+    autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
+    autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
+    autocmd FileType applescript nnoremap <buffer> <f5> :w<cr>:T osascript %<cr><cr>
+    autocmd FileType applescript inoremap <buffer> <f5> <esc>:w<cr>:T osascript %<cr><cr>
     autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
     autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
     autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
@@ -415,7 +420,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 
-nnoremap <localleader>. :e ~/.vimrc<cr>
+nnoremap <localleader>, :e ~/.vimrc<cr>
+nnoremap <localleader>. :e ~/.zshrc<cr>
+nnoremap <localleader>/ :e ~/.zshenv<cr>
 
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
