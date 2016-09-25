@@ -1,7 +1,4 @@
 export TERM="xterm-256color"
-export WORKON_HOME=~/Envs
-export PROJECT_HOME=~/Projects
-source /home/enthu/.local/bin/virtualenvwrapper.sh
 POWERLINE_CONFIG_COMMAND="/home/enthu/.local/bin/powerline-config"
 # Path to your oh-my-zsh installation.
  export ZSH=/home/enthu/.oh-my-zsh
@@ -94,5 +91,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
