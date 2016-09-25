@@ -1,0 +1,6 @@
+run the install-xcape.sh and startkeymod.sh scripts
+
+the pc-modified file needs to be copied to /usr/share/X11/xkb/symbols/pc
+
+you may need to clear xkb's cache afterwards: rm -rf /var/lib/xkb/*
+
