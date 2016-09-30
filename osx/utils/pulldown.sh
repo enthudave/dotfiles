@@ -26,7 +26,7 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 
 # pull config files
 cp ./osx/zsh/zshrc ~/.zshrc ./osx/zsh/zshenv ~/.zshenv
-cp ./tmux/tmux.conf ~/.tmux.conf .
+cp ./tmux/tmux.conf ~/.tmux.conf
 
 # install powerlevel9k zsh-theme
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
