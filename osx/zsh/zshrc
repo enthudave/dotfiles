@@ -98,9 +98,9 @@ alias buco='ssh enthu@192.168.0.164'
 alias xuco='ssh enthu@192.168.0.172'
 alias ecd='/Applications/Eclipse.app/Contents/Eclipse/eclimd'
 alias e-e='emc ~/.spacemacs'
-alias e-v='nvim ~/.vimrc'
-alias e-z='nvim ~/.zshrc'
-alias e-ze='nvim ~/.zshenv'
+alias e-v='nvim ~/Desktop/dotfiles/osx/vim/vimrc'
+alias e-z='nvim ~/Desktop/dotfiles/osx/zsh/zshrc'
+alias e-ze='nvim ~/Desktop/dotfiles/osx/zsh/zshenv'
 alias ddsh='eval $(docker-machine env default)'
 alias dms='docker-machine start'
 alias purge-containers='docker rm $(docker ps -a -q)'
@@ -110,9 +110,6 @@ alias julia="exec '/Applications/Julia-0.4.6.app/Contents/Resources/julia/bin/ju
 
 # part of terminfo fix for nvim's ability to remap <C-h>
 export TERMINFO="$HOME/.terminfo"
-
-# enable rvm tab completion
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 # for https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

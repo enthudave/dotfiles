@@ -1,100 +1,100 @@
 " Vundle  PluginSettings  Settings  GUI  Keybindings
+" |_press * on one of the sections to go there
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-" __     __               _ _
-" \ \   / /   _ _ __   __| | | ___
-"  \ \ / / | | | '_ \ / _` | |/ _ \
-"   \ V /| |_| | | | | (_| | |  __/
-"    \_/  \__,_|_| |_|\__,_|_|\___|
+"       _                       _
+" __   _(_)_ __ ___        _ __ | |_   _  __ _
+" \ \ / / | '_ ` _ \ _____| '_ \| | | | |/ _` |
+"  \ V /| | | | | | |_____| |_) | | |_| | (_| |
+"   \_/ |_|_| |_| |_|     | .__/|_|\__,_|\__, |
+"                         |_|            |___/
 "
-" Vundle
+"
+"
 "###############################################################################
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"Vundle||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin('~/.vim/plugged')
 
-"set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here'vim auto)
+Plug 'FuzzyFinder'
+Plug 'L9'
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plug 'dietsche/vim-lastplace'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'kassio/neoterm'
+Plug 'jpalardy/vim-slime'
+Plug 'thinca/vim-quickrun'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
-Plugin 'FuzzyFinder'
-Plugin 'L9'
+Plug 'chrisbra/Colorizer'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'godlygeek/csapprox'
+Plug 'godlygeek/tabular'
 
-Plugin 'dietsche/vim-lastplace'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'jpalardy/vim-slime.git'
-Plugin 'thinca/vim-quickrun'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/unite.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'tomasr/molokai'
-Plugin 'itchyny/landscape.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'godlygeek/csapprox'
-Plugin 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-fugitive'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-xmark', { 'do': 'make' }
+Plug 'junegunn/seoul256.vim'
 
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'dbakker/vim-lint'
 
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'dbakker/vim-lint'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
+Plug 'rdnetto/YCM-Generator'
 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
+Plug 'JuliaLang/julia-vim'
 
-Plugin 'vim-perl/vim-perl'
+Plug 'vim-perl/vim-perl'
 
-"Plugin 'klen/python-mode'
-"Plugin 'hdima/python-syntax'
+Plug 'vim-ruby/vim-ruby'
 
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/applescript.vim'
 
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'justinmk/vim-syntax-extra'
-Plugin 'luochen1990/rainbow' "rainbow parentheses
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
 
-Plugin 'itchyny/vim-haskell-indent'
-"Plugin 'urso/haskell_syntax.vim'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'justinmk/vim-syntax-extra'
 
-Plugin 'JamshedVesuna/vim-markdown-preview'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plug 'itchyny/vim-haskell-indent'
+"Plug 'urso/haskell_syntax.vim'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+
+call plug#end()
+filetype plugin indent on
 syntax on
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins<LeftMouse>
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
 
 "###############################################################################
@@ -106,53 +106,47 @@ syntax on
 " | .__/|_|\__,_|\__, |_|_| |_| |___/\___|\__|\__|_|_| |_|\__, |___/
 " |_|            |___/                                    |___/
 "
-" PluginSettings
+"
 "###############################################################################
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"PluginSettings||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+"start an autocmd group for vimrc and clear it, so that you can
+"source your vimrc after you've changed it. And not have your
+"autocmd's defined multiple times.
+augroup vimrc_group
+    autocmd!
+augroup END
+
 let vim_markdown_preview_hotkey='<localleader>p'
 let vim_markdown_preview_github=1
 
+" VIM-SLIME
 let g:slime_python_ipython = 1
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 let g:slime_dont_ask_default = 1
 
-" nerdtree
+"NEOTERM
+let g:neoterm_keep_term_open = 1
+let g:neoterm_automap_keys = '<localleader>tt'
+
+" NERDTREE
 let NERDTreeHijackNetrw=1
 let NERDTreeQuitOnOpen=1
 
-" rainbow
-" (rainbow parentheses plugin) 0 if you want to enable it later via :RainbowToggle
-" eclim breaks with rainbow active on xml
-let g:rainbow_active = 0
-let g:lisp_rainbow = 1 " rainbow parentheses for Lisp
-
-function RainbowTogglerfunc()
-  if &filetype =~ 'xml'
-    return
-  endif
-  if &filetype =~ 'haskell'
-    return
-  endif
-  RainbowToggle
-endfunction
-
-autocmd FileType * call RainbowTogglerfunc()
-
-" autoindent
-autocmd FileType perl set autoindent|set smartindent
-
-" 4 space tabs
-autocmd FileType perl set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+" AUTO-PAIRS
+" auto-pairs 'imaps' <C-h> but i need it
+let g:AutoPairsMapCh=0
 
 " from Valloric's vimrc
 " cindent is a bit too smart for its own good and triggers in text files when
 " you're typing inside parens and then hit enter; it aligns the text with the
 " opening paren and we do NOT want this in text files!
-autocmd FileType text,markdown,gitcommit set nocindent
+" from me, wrapped in an augroup
+augroup vimrc_group
+    autocmd FileType text,markdown,gitcommit set nocindent
+augroup END
 
-" syntastic
-"
+" SYNTASTIC
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
@@ -161,30 +155,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 
-" ctrlp
-let g:ctrlp_map = '<C-p>'
-" From Valloric's vimrc
-" Use Vim's cwd
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30'
-" Faster indexing of files; requires having ag (AKA the_silver_searcher)
-" installed.
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .un~
-      \ --ignore .DS_Store
-     \ --ignore "**/*.pyc"
-      \ -g ""'
-
-" YouCompleteMe
+" YOUCOMPLETEME
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
 
-" ultisnips
+" ULTISNIPS
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
@@ -192,7 +169,21 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" EASYTAGS
+let g:easytags_cmd = '/usr/local/bin/ctags'
+let g:easytags_include_members = 1
+let g:easytags_resolve_links = 1
+
+highlight def link pythonClassTag Title
+highlight def link pythonMethodTag Function
+"highlight def link javaMethodTag Function
+"highlight def link javaClassTag Type
+"highlight def link javaInterfaceTag Keyword
+
+
+" TAGBAR
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
 
 "###############################################################################
@@ -204,18 +195,28 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " |___/\___|\__|\__|_|_| |_|\__, |___/
 "                           |___/
 "
-" Settings
+"
 "###############################################################################
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-set encoding=utf-8
+" Settings|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/local/bin/python'
+
+if !has('nvim')
+    set ttymouse=xterm2
+    set backspace=indent,eol,start
+    set encoding=utf-8
+endif
+
+if exists('neovim_dot_app')
+    echom "setting font"
+    call MacSetFont("Hack", 14)
+endif
+
 set termencoding=utf-8
 
-set autoindent
-set backspace=indent,eol,start
-set cindent
 set cursorline
-set expandtab
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+set guifont=Hack:h14
 set hidden
 set history=1000
 set incsearch
@@ -230,17 +231,31 @@ set pastetoggle=<F3>
 set ruler
 set showtabline=2
 set scrolloff=5
-set shiftwidth=2
 set smartcase
-set smarttab
-set softtabstop=2
-set tabstop=2
-set tw=80
 set undofile
-set visualbell
 set wildmenu
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+augroup vimrc_group
+    au BufRead,BufNewFile *.applescript set filetype=applescript
+augroup END
+
+augroup vimrc_group
+    autocmd FileType vim setlocal foldmethod=marker|set tabstop=4|set shiftwidth=4|set expandtab| set softtabstop=4
+    autocmd FileType c set tabstop=4|set shiftwidth=4|set expandtab| set softtabstop=4
+augroup END
+
+augroup vimrc_group
+    " autoindent
+    autocmd FileType perl set autoindent|set smartindent
+    " 4 space tabs
+    autocmd FileType perl set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+augroup END
+
+augroup vimrc_group
+    autocmd Filetype html set autoindent
+    autocmd FileType html set shiftwidth=2
+augroup END
+"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
 
 "###############################################################################
@@ -251,40 +266,82 @@ set wildmenu
 " | |_| | |_| || |
 "  \____|\___/|___|
 "
-" GUI
+"
 "###############################################################################
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" GUI||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+"if has('gui_running')
+"" The cursor and cursorline colors
+"highlight CursorLine guibg=#232728
+"highlight Cursor guibg=magenta guifg=black
+"augroup gui_cursor_line
+"autocmd!
+"autocmd InsertEnter * highlight CursorLine guibg=#00005f
+"autocmd InsertLeave * highlight CursorLine guibg=#232728
+
+"autocmd InsertEnter * highlight Cursor guibg=#ff0000
+"autocmd InsertLeave * highlight Cursor guibg=magenta guifg=black
+"augroup END
+"endif
+
 if !has('gui_running')
-  set t_Co=256
-  "disable 'Background color erase'
-  set t_ut=
+    set t_Co=256
+
+    "disable 'Background color erase'
+    set t_ut=
+
+    " The cursorline colors
+    highlight CursorLine ctermbg=234
+    augroup vimrc_group
+        autocmd InsertEnter * highlight CursorLine ctermbg=17
+        autocmd InsertLeave * highlight CursorLine ctermbg=234
+    augroup END
+
+    "Change cursor shape between insert and normal mode in iTerm2.app
+    if $TERM_PROGRAM =~ "iTerm"
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+    endif
+
 endif
 
 set background=dark
-let g:rehash256 = 1
-colorscheme molokai
+colorscheme Tomorrow-Night-Eighties
+
 let g:molokai_original = 1
 
+let java_highlight_all=1
 let python_highlight_all = 1
+"let java_highlight_functions = 1
+let python_version_2 = 1
+augroup vimrc_group
+    autocmd FileType python let b:easytags_auto_highlight = 1
+    autocmd FileType java let b:easytags_auto_highlight = 1
+augroup END
 
+
+let g:cpp_class_scope_highlight = 1
 " Highlight Class and Function names
 function! s:HighlightFunctionsAndClasses()
-  if &filetype =~ 'python'
     syn match cCustomFunc      "\w\+\s*\((\)\@="
-    syn match cCustomClass     "\w\+\s*\(::\)\@="
-
     hi def link cCustomFunc      Function
-    hi def link cCustomClass     Function
-  endif
-  return
+
+    if &filetype =~ 'cpp'
+        syn match cCustomClass     "\w\+\s*\(::\)\@="
+        hi def link cCustomClass     Keyword
+    endif
 endfunction
 
-au Syntax * call s:HighlightFunctionsAndClasses()
-
+augroup vimrc_group
+    au FileType python call s:HighlightFunctionsAndClasses()
+    au FileType cpp call s:HighlightFunctionsAndClasses()
+augroup END
 
 set guioptions-=T  "remove toolbar
+set guioptions-=t  "remove toolbar
 set guioptions-=R  "remove right-hand scroll bar
+set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+set guioptions-=l  "remove left-hand scroll bar
 
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
@@ -303,33 +360,12 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <f7> <Plug>AirlineSelectPrevTab
-nmap <f9> <Plug>AirlineSelectNextTab
-let g:airline_section_z = '%3p%% |%4l% :%3v'
 
-highlight CursorLine ctermbg=234 guibg=#232728
-autocmd InsertEnter * highlight CursorLine ctermbg=17 guibg=#00005f
-autocmd InsertLeave * highlight CursorLine ctermbg=234 guibg=#232728
+"set the rightmost section of airline, shows:
+"line-numbers / total-line-numbers | column
+let g:airline_section_z = '%4l% /%L% |%2v'
 
-highlight Cursor guibg=magenta guifg=black
-autocmd InsertEnter * highlight Cursor guibg=#ff0000
-autocmd InsertLeave * highlight Cursor guibg=magenta guifg=black
-"Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
-
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
 
 
@@ -342,55 +378,104 @@ endif
 " |_|\_\___|\__, |_.__/|_|_| |_|\__,_|_|_| |_|\__, |___/
 "           |___/                             |___/
 "
-" Keybindings
+"
 "###############################################################################
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" Keybindings||||||||||l||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+if has ('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <f8> <C-\><C-n>:Ttoggle<cr>
+endif
 
-imap <C-d> <delete>
+augroup vimrc_group
+    autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
+    autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
+    autocmd FileType applescript nnoremap <buffer> <f5> :w<cr>:T osascript %<cr><cr>
+    autocmd FileType applescript inoremap <buffer> <f5> <esc>:w<cr>:T osascript %<cr><cr>
+    autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
+    autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
+    autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
+augroup END
+
+nmap <f7> <Plug>AirlineSelectPrevTab
+nmap <f9> <Plug>AirlineSelectNextTab
+nnoremap <f8> :Ttoggle<cr><C-w>ja
+inoremap <f8> <esc>:Ttoggle<cr><C-w>ja
+nnoremap <silent> <F10> :TagbarToggle<CR>
+
+inoremap <C-d> <delete>
 nnoremap <BS> :
 
-"<Leader> mappings
+let mapleader = "\<tab>"
 let maplocalleader = "\<SPACE>"
-nnoremap <tab> :b#<CR>
+nnoremap \ :b#<CR>
 
-map <localleader>. :e ~/.vimrc<cr>
-map <localleader>b :CtrlPBuffer<CR>
-map <localleader>g :YcmCompleter GoTo<CR>
-map <localleader>n :NERDTreeToggle<CR>
-map <localleader>q :wqa<CR>
-map <localleader>r :CtrlPMRU<CR>
-map <localleader>s :SyntasticToggleMode<CR>
-map <localleader>w :wincmd p<CR>
+"<leader> mappings
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nnoremap <leader>f :YcmCompleter FixIt<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+
+nnoremap <localleader>, :e ~/.vimrc<cr>
+nnoremap <localleader>. :e ~/.zshrc<cr>
+nnoremap <localleader>/ :e ~/.zshenv<cr>
+
+" Comment a line in the filetype's apropriate way
+augroup vimrc_group
+    autocmd FileType applescript nnoremap <buffer> <localleader>c I--<esc>
+    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+    autocmd FileType vim     nnoremap <buffer> <localleader>c I"<esc>
+augroup END
+
+nnoremap <localleader>b :Buffers<CR>
+nnoremap <localleader>f :FZF<CR>
+nnoremap <localleader>k :ColorToggle<CR>
+nnoremap <localleader>n :NERDTreeToggle<CR>
+nnoremap <localleader>q :wqa<CR>
+nnoremap <localleader>r :History<CR>
+nnoremap <localleader>s :SyntasticToggleMode<CR>
+nnoremap <localleader>w :wincmd p<CR>
 
 "CONTROL-KEY MOVEMENT"
 cnoremap <C-j> <down>
 cnoremap <C-k> <up>
 
 imap <C-h> <Left>
-imap <C-l> <Right>
-imap <C-j> <Down>
-imap <C-k> <Up>
+inoremap <C-l> <Right>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
 
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-map <f5> :%SlimeSend<cr>
-
-map <silent> tw :GhcModTypeInsert<CR>
-map <silent> ts :GhcModSplitFunCase<CR>
-map <silent> tq :GhcModType<CR>
-map <silent> te :GhcModTypeClear<CR>
+noremap <silent> tw :GhcModTypeInsert<CR>
+noremap <silent> ts :GhcModSplitFunCase<CR>
+noremap <silent> tq :GhcModType<CR>
+noremap <silent> te :GhcModTypeClear<CR>
 
 let g:haskell_tabular = 1
 
-vmap a= :Tabularize /=<CR>
-vmap a; :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
+vnoremap a= :Tabularize /=<CR>
+vnoremap a; :Tabularize /::<CR>
+vnoremap a: :Tabularize /:<CR>
+vnoremap a- :Tabularize /-><CR>
 vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
 vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 
-
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" Abbreviations
+augroup vimrc_group
+    autocmd FileType python     :iabbrev <buffer> iff if:<left>
+    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+augroup END
+"||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
