@@ -422,9 +422,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 
-nnoremap <localleader>, :e ~/.vimrc<cr>
-nnoremap <localleader>. :e ~/.zshrc<cr>
-nnoremap <localleader>/ :e ~/.zshenv<cr>
+nnoremap <localleader>, :e ~/Desktop/dotfiles/osx/vim/vimrc<cr>
+nnoremap <localleader>. :e ~/Desktop/dotfiles/osx/zsh/zshrc<cr>
+nnoremap <localleader>/ :e ~/Desktop/dotfiles/osx/zsh/zshenv<cr>
 
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
