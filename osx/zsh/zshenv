@@ -1,2 +1,4 @@
 export PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=~/.vim/bin:$PATH
+export PATH=/usr/local/opt/qt5/bin/:$PATH
+#export CMAKE_PREFIX_PATH=/Users/david/Qt/5.7/clang_64/lib/cmake/
