@@ -1,56 +1,61 @@
-" Vundle  PluginSettings  Settings  GUI  Keybindings
+" Vim-Plug  PluginSettings  Settings  GUI  Keybindings
 " |_press * on one of the sections to go there
 "###############################################################################
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-" __     __               _ _
-" \ \   / /   _ _ __   __| | | ___
-"  \ \ / / | | | '_ \ / _` | |/ _ \
-"   \ V /| |_| | | | | (_| | |  __/
-"    \_/  \__,_|_| |_|\__,_|_|\___|
-"
+"        _                       _
+" __   _(_)_ __ ___        _ __ | |_   _  __ _
+" \ \ / / | '_ ` _ \ _____| '_ \| | | | |/ _` |
+"  \ V /| | | | | | |_____| |_) | | |_| | (_| |
+"   \_/ |_|_| |_| |_|     | .__/|_|\__,_|\__, |
+"                         |_|            |___/
 "
 "###############################################################################
-"Vundle||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+"Vim-Plug||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'FuzzyFinder'
-Plug 'L9'
+"Plug 'FuzzyFinder'
+"Plug 'L9'
 
 Plug 'dietsche/vim-lastplace'
+
 Plug 'jmcantrell/vim-virtualenv'
+
 Plug 'kassio/neoterm'
 Plug 'jpalardy/vim-slime'
+
 Plug 'thinca/vim-quickrun'
+
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
+Plug 'ryanoasis/vim-devicons'
 Plug 'chrisbra/Colorizer'
-Plug 'chriskempson/vim-tomorrow-theme'
+
+Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'godlygeek/csapprox'
-Plug 'godlygeek/tabular'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
 
+Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'bronson/vim-trailing-whitespace'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'junegunn/vim-xmark', { 'do': 'make' }
-Plug 'junegunn/seoul256.vim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -65,28 +70,30 @@ Plug 'vim-perl/vim-perl'
 
 Plug 'vim-ruby/vim-ruby'
 
-Plug 'vim-scripts/applescript.vim'
+Plug 'peterhoeg/vim-qml'
 
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 
 Plug 'terryma/vim-multiple-cursors'
+
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'justinmk/vim-syntax-extra'
+" Plug 'arakashic/chromatica.nvim'
 
 Plug 'itchyny/vim-haskell-indent'
-"Plug 'urso/haskell_syntax.vim'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
 
 Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
-"Plug 'JamshedVesuna/vim-markdown-preview'
+if has("macunix")
+    Plug 'vim-scripts/applescript.vim'
+    Plug 'junegunn/vim-xmark', { 'do': 'make' }
+endif
+
 
 call plug#end()
 filetype plugin indent on
@@ -106,16 +113,13 @@ syntax on
 "
 "
 "###############################################################################
-"PluginSettings||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+"PluginSettings||||||||||l||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 "start an autocmd group for vimrc and clear it, so that you can
 "source your vimrc after you've changed it. And not have your
 "autocmd's defined multiple times.
 augroup vimrc_group
     autocmd!
 augroup END
-
-let vim_markdown_preview_hotkey='<localleader>p'
-let vim_markdown_preview_github=1
 
 " VIM-SLIME
 let g:slime_python_ipython = 1
@@ -125,6 +129,7 @@ let g:slime_dont_ask_default = 1
 
 "NEOTERM
 let g:neoterm_keep_term_open = 1
+let g:neoterm_autoinsert = 1
 let g:neoterm_automap_keys = '<localleader>tt'
 
 " NERDTREE
@@ -152,6 +157,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = "--ignore F401,E402"
 
 " YOUCOMPLETEME
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -164,23 +170,23 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
 
-" EASYTAGS
-let g:easytags_cmd = '/usr/local/bin/ctags'
-let g:easytags_include_members = 1
-let g:easytags_resolve_links = 1
+" CHROMATICA
+if has("macunix")
+    let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+else
+    let g:chromatica#libclang_path='/usr/lib/llvm-3.8/lib'
+endif
 
-highlight def link pythonClassTag Title
-highlight def link pythonMethodTag Function
-"highlight def link javaMethodTag Function
-"highlight def link javaClassTag Type
-"highlight def link javaInterfaceTag Keyword
+let g:chromatica#enable_at_startup = 1
+let g:chromatica#highlight_feature_level = 0
 
-
-" TAGBAR
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+" QUICKRUN
+let g:quickrun_config = {}
+let g:quickrun_config.python = {
+            \   'outputter': 'loclist',
+            \   'command': 'python'
+            \}
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
 
@@ -196,9 +202,13 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 "
 "###############################################################################
 " Settings|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
-
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/local/bin/python'
+if has("macunix")
+    let g:python3_host_prog = '/usr/local/bin/python3'
+    let g:python_host_prog = '/usr/local/bin/python'
+else
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python_host_prog = '/usr/bin/python'
+endif
 
 if !has('nvim')
     set ttymouse=xterm2
@@ -227,11 +237,12 @@ set noswapfile
 set nowrap
 set pastetoggle=<F3>
 set ruler
-set showtabline=2
+set showtabline=1
 set scrolloff=5
 set smartcase
 set undofile
 set wildmenu
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
 augroup vimrc_group
     au BufRead,BufNewFile *.applescript set filetype=applescript
@@ -239,7 +250,7 @@ augroup END
 
 augroup vimrc_group
     autocmd FileType vim setlocal foldmethod=marker|set tabstop=4|set shiftwidth=4|set expandtab| set softtabstop=4
-    autocmd FileType c set tabstop=4|set shiftwidth=4|set expandtab| set softtabstop=4
+    autocmd FileType c,cpp,objc set tabstop=4|set shiftwidth=4|set noexpandtab| set softtabstop=4
 augroup END
 
 augroup vimrc_group
@@ -266,7 +277,7 @@ augroup END
 "
 "
 "###############################################################################
-" GUI||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+" GUI||||||||||||||||l||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 "if has('gui_running')
 "" The cursor and cursorline colors
 "highlight CursorLine guibg=#232728
@@ -281,58 +292,38 @@ augroup END
 "augroup END
 "endif
 
-if !has('gui_running')
-    set t_Co=256
-
-    "disable 'Background color erase'
-    set t_ut=
-
-    " The cursorline colors
-    highlight CursorLine ctermbg=234
-    augroup vimrc_group
-        autocmd InsertEnter * highlight CursorLine ctermbg=17
-        autocmd InsertLeave * highlight CursorLine ctermbg=234
-    augroup END
-
-    "Change cursor shape between insert and normal mode in iTerm2.app
-    if $TERM_PROGRAM =~ "iTerm"
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-    endif
-
-endif
+"if !has('gui_running')
+"    set t_Co=256
+"
+"    "disable 'Background color erase'
+"    set t_ut=
+"
+"    " The cursorline colors
+"    highlight CursorLine ctermbg=234
+"    augroup vimrc_group
+"        autocmd InsertEnter * highlight CursorLine ctermbg=17
+"        autocmd InsertLeave * highlight CursorLine ctermbg=234
+"    augroup END
+"
+"    "Change cursor shape between insert and normal mode in iTerm2.app
+"    if $TERM_PROGRAM =~ "iTerm"
+"        let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+"        let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+"    endif
+"
+"endif
 
 set background=dark
-colorscheme molokai-enthu
 
-let g:molokai_original = 1
+" on linux this has been causing problems
+"
+"if (has("termguicolors"))
+"    set termguicolors
+"endif
 
-let java_highlight_all=1
-let python_highlight_all = 1
-"let java_highlight_functions = 1
-let python_version_2 = 1
-augroup vimrc_group
-    autocmd FileType python let b:easytags_auto_highlight = 1
-    autocmd FileType java let b:easytags_auto_highlight = 1
-augroup END
-
-
-let g:cpp_class_scope_highlight = 1
-" Highlight Class and Function names
-function! s:HighlightFunctionsAndClasses()
-    syn match cCustomFunc      "\w\+\s*\((\)\@="
-    hi def link cCustomFunc      Function
-
-    if &filetype =~ 'cpp'
-        syn match cCustomClass     "\w\+\s*\(::\)\@="
-        hi def link cCustomClass     Keyword
-    endif
-endfunction
-
-augroup vimrc_group
-    au FileType python call s:HighlightFunctionsAndClasses()
-    au FileType cpp call s:HighlightFunctionsAndClasses()
-augroup END
+colorscheme OceanicNext
+let g:oceanic_next_terminal_italic = 1
+let g:oceanic_next_terminal_bold = 1
 
 set guioptions-=T  "remove toolbar
 set guioptions-=t  "remove toolbar
@@ -341,23 +332,42 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 set guioptions-=l  "remove left-hand scroll bar
 
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'bubblegum'
+
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V-LINE',
+      \ '' : 'V-BLOCK',
+      \ 's'  : 'S',
+      \ 'S'  : 'S-LINE',
+      \ '' : 'S-BLOCK',
+      \ }
+
+let g:airline_left_sep =''
+let g:airline_right_sep =''
 let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline_detect_modified=1
+
+let g:airline_detect_modified = 1
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+let g:airline#extensions#tabline#show_buffers= 1
+
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 "set the rightmost section of airline, shows:
 "line-numbers / total-line-numbers | column
@@ -378,12 +388,7 @@ let g:airline_section_z = '%4l% /%L% |%2v'
 "
 "
 "###############################################################################
-" Keybindings||||||||||l||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
-if has ('nvim')
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <f8> <C-\><C-n>:Ttoggle<cr>
-endif
-
+" Keybindings|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 augroup vimrc_group
     autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
     autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
@@ -396,9 +401,47 @@ augroup END
 
 nmap <f7> <Plug>AirlineSelectPrevTab
 nmap <f9> <Plug>AirlineSelectNextTab
-nnoremap <f8> :Ttoggle<cr><C-w>ja
-inoremap <f8> <esc>:Ttoggle<cr><C-w>ja
-nnoremap <silent> <F10> :TagbarToggle<CR>
+
+if has ('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <f8> <C-\><C-n>:TerminalTogggle<cr>
+endif
+
+nnoremap <f8> :TerminalTogggle<cr>
+inoremap <f8> <esc>:TerminalTogggle<cr>
+
+function! SplitForTerminal()
+    let l:height = winheight(0) * 3
+    let l:width = winwidth(0)
+    if (l:height > l:width)
+        Tpos horizontal
+        Topen
+        execute "normal! \<C-w>ja"
+    else
+        Tpos vertical
+        Topen
+        execute "normal! \<C-w>la"
+    endif
+endfunction
+
+let g:term_is_open = 0
+function! TerminalToggle()
+    if exists('g:term_is_open')
+        if g:term_is_open
+            echom "leaving terminal"
+            let g:term_is_open = 0
+            Tclose
+        else
+            echom "opening terminal"
+            let g:term_is_open = 1
+            call SplitForTerminal()
+        endif
+    else
+        :echo "no variable 'g:term_is_open' exists"
+    endif
+endfunction
+command! TerminalTogggle call TerminalToggle()
+
 
 inoremap <C-d> <delete>
 nnoremap <BS> :
@@ -420,22 +463,27 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 
-nnoremap <localleader>, :e ~/.vimrc<cr>
-nnoremap <localleader>. :e ~/.zshrc<cr>
-nnoremap <localleader>/ :e ~/.zshenv<cr>
+nnoremap <localleader>, :e ~/Desktop/dotfiles/nvim/vimrc<cr>
+if has("macunix")
+    nnoremap <localleader>. :e ~/Desktop/dotfiles/osx/zsh/zshrc<cr>
+    nnoremap <localleader>/ :e ~/Desktop/dotfiles/osx/zsh/zshenv<cr>
+else
+    nnoremap <localleader>. :e ~/Desktop/dotfiles/linux/zsh/zshrc<cr>
+    nnoremap <localleader>/ :e ~/Desktop/dotfiles/linux/zsh/zshenv<cr>
+
 
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
-    autocmd FileType applescript nnoremap <buffer> <localleader>c I--<esc>
-    autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
-    autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
-    autocmd FileType vim     nnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType applescript nnoremap <buffer> <localleader>c I--<space><esc>
+    autocmd FileType c, cpp, objc, javascript nnoremap <buffer> <localleader>c I//<space><esc>
+    autocmd FileType python, perl, zsh nnoremap <buffer> <localleader>c I#<space><esc>
+    autocmd FileType vim noremap <buffer> <localleader>c I"<space><esc>
 augroup END
 
 nnoremap <localleader>b :Buffers<CR>
 nnoremap <localleader>f :FZF<CR>
 nnoremap <localleader>k :ColorToggle<CR>
+nnoremap <localleader>l <C-l>
 nnoremap <localleader>n :NERDTreeToggle<CR>
 nnoremap <localleader>q :wqa<CR>
 nnoremap <localleader>r :History<CR>
@@ -446,7 +494,7 @@ nnoremap <localleader>w :wincmd p<CR>
 cnoremap <C-j> <down>
 cnoremap <C-k> <up>
 
-imap <C-h> <Left>
+inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -473,7 +521,7 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 " Abbreviations
 augroup vimrc_group
     autocmd FileType python     :iabbrev <buffer> iff if:<left>
-    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+    autocmd FileType javascript, c, cpp, objc :iabbrev <buffer> iff if ()<left>
 augroup END
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
