@@ -437,7 +437,7 @@ function! TerminalToggle()
             call SplitForTerminal()
         endif
     else
-        :echo "no variable 'g:term_is_open' exists"
+        echo "no variable 'g:term_is_open' exists"
     endif
 endfunction
 command! TerminalTogggle call TerminalToggle()
