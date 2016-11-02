@@ -470,6 +470,7 @@ if has("macunix")
 else
     nnoremap <localleader>. :e ~/Desktop/dotfiles/linux/zsh/zshrc<cr>
     nnoremap <localleader>/ :e ~/Desktop/dotfiles/linux/zsh/zshenv<cr>
+endif
 
 
 " Comment a line in the filetype's apropriate way
