@@ -244,6 +244,19 @@ set undofile
 set wildmenu
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 
+if has('autocmd')
+	function! ILikeHelpToTheRight()
+		if !exists('w:help_is_moved') || w:help_is_moved != "right"
+			wincmd L
+			let w:help_is_moved = "right"
+		endif
+	endfunction
+
+	augroup vimrc_group
+		autocmd FileType help call ILikeHelpToTheRight()
+	augroup END
+endif
+
 augroup vimrc_group
     au BufRead,BufNewFile *.applescript set filetype=applescript
 augroup END
@@ -369,6 +382,38 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
 
+function! GetStatus()
+	let l:status_modfied = 0
+	let l:status_unstaged = 0
+	let l:status_untracked = 0
+	let l:bufferpath = expand('%:h:S')
+	let l:output = system('cd ' . l:bufferpath . '; git status --porcelain ' )
+	let l:out_array = split(l:output, '\n')
+	for i in l:out_array
+		if i[0] =~ "M"
+			let l:status_modfied = 1
+		endif
+		if i[1] =~ "M"
+			let l:status_unstaged = 1
+		endif
+		if i =~ "?.*"
+			let l:status_untracked = 1
+		endif
+	endfor
+	let l:returnvalue = ""
+	if l:status_modfied == 1
+		let l:returnvalue .= "✚ "
+	endif
+	if l:status_unstaged == 1
+		let l:returnvalue .= "● "
+	endif
+	if l:status_untracked == 1
+		let l:returnvalue .= "?"
+	endif
+	return l:returnvalue
+endfunction
+
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)} %{GetStatus()}'
 "set the rightmost section of airline, shows:
 "line-numbers / total-line-numbers | column
 let g:airline_section_z = '%4l% /%L% |%2v'
