@@ -567,7 +567,7 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 " Abbreviations
 augroup vimrc_group
     autocmd FileType python     :iabbrev <buffer> iff if:<left>
-    autocmd FileType javascript, c, cpp, objc :iabbrev <buffer> iff if ()<left>
+    autocmd FileType javascript,c,cpp,objc :iabbrev <buffer> iff if ()<left>
 augroup END
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
