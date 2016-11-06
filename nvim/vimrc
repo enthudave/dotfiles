@@ -334,7 +334,7 @@ set background=dark
 "    set termguicolors
 "endif
 
-colorscheme OceanicNext
+colorscheme herald
 let g:oceanic_next_terminal_italic = 1
 let g:oceanic_next_terminal_bold = 1
 
@@ -521,8 +521,8 @@ endif
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
     autocmd FileType applescript nnoremap <buffer> <localleader>c I--<space><esc>
-    autocmd FileType c, cpp, objc, javascript nnoremap <buffer> <localleader>c I//<space><esc>
-    autocmd FileType python, perl, zsh nnoremap <buffer> <localleader>c I#<space><esc>
+    autocmd FileType c,cpp,objc,javascript nnoremap <buffer> <localleader>c I//<space><esc>
+    autocmd FileType python,perl,zsh nnoremap <buffer> <localleader>c I#<space><esc>
     autocmd FileType vim noremap <buffer> <localleader>c I"<space><esc>
 augroup END
 
