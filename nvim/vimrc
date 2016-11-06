@@ -389,6 +389,9 @@ function! GetStatus()
     let l:status_untracked = 0
     let l:bufferpath = expand('%:h:S')
     let l:output = system('cd ' . l:bufferpath . '; git status --porcelain ' )
+    if v:shell_error != 0
+        return ""
+    endif
     let l:out_array = split(l:output, '\n')
     for i in l:out_array
         if i[0] =~ "M"
