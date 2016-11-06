@@ -38,6 +38,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'chrisbra/Colorizer'
 
 Plug 'mhartington/oceanic-next'
+Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -334,7 +335,7 @@ set background=dark
 "    set termguicolors
 "endif
 
-colorscheme herald
+colorscheme oceanicnext
 let g:oceanic_next_terminal_italic = 1
 let g:oceanic_next_terminal_bold = 1
 
