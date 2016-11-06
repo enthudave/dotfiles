@@ -383,7 +383,7 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#eclim#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
 
-function! GetStatus()
+function! GetGitStatus()
     let l:status_modfied = 0
     let l:status_unstaged = 0
     let l:status_untracked = 0
@@ -417,7 +417,7 @@ function! GetStatus()
     return l:returnvalue
 endfunction
 
-let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)} %{GetStatus()}'
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)} %{GetGitStatus()}'
 "set the rightmost section of airline, shows:
 "line-numbers / total-line-numbers | column
 let g:airline_section_z = '%4l% /%L% |%2v'
