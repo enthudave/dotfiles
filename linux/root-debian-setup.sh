@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # remove cdrom entries from apt's sources
 mv /etc/apt/sources.list /etc/apt/sources.backup
