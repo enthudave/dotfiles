@@ -1,23 +1,9 @@
 #!/usr/bin/env bash
 
-su
-
-# remove cdrom entries from apt's sources
-mv /etc/apt/sources.list /etc/apt/sources.backup
-sed '/cdrom/d' /etc/apt/sources.backup > /etc/apt/sources.list
-
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 printf "${RED}APT SECTION${NC}\n\n\n"
-
-apt update
-
-apt install sudo
-adduser enthu sudo
-
-printf "${RED}LOGIN ENTHU${NC}\n\n\n"
-login enthu
 
 # sudo apt install ssh tmux
 sudo apt install zsh git curl terminator
