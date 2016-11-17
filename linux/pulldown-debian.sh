@@ -6,10 +6,10 @@ NC='\033[0m' # No Color
 printf "${RED}APT SECTION${NC}\n\n"
 
 # sudo apt install ssh tmux
-sudo apt install zsh git curl terminator
-sudo apt install python-pip python-dev python3-pip python3-dev
-sudo apt install libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
-sudo apt install python-gi python-gi-cairo python-cairo
+sudo apt install -y zsh git curl terminator
+sudo apt install -y python-pip python-dev python3-pip python3-dev
+sudo apt install -y libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+sudo apt install -y python-gi python-gi-cairo python-cairo
 
 printf "\n\n${RED}INSTALL NEOVIM${NC}\n\n"
 
