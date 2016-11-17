@@ -41,7 +41,7 @@ fi
 
 printf "\n\n${RED}INSTALL DOTFILES${NC}\n\n"
 
-if [ ! -d "$HOME/Desktop/dotfiles)" ];then
+if [ ! -d "$HOME/Desktop/dotfiles" ];then
 	git clone https://github.com/enthudave/dotfiles ~/Desktop/dotfiles
 	if [ ! -e "$HOME/.zshrc" ];then
 		rm $HOME/.zshrc
