@@ -63,7 +63,7 @@ if [ ! -e "$HOME/.config/nvim" ];then
 	ln -s ~/.vim ~/.config/nvim
 fi
 if [ ! -e "$HOME/.config/nvim/init.vim" ];then
-	ln -s ~/Desktop/dotfiles/linux/nvim/vimrc ~/.config/nvim/init.vim
+	ln -s ~/Desktop/dotfiles/nvim/vimrc ~/.config/nvim/init.vim
 fi
 
 printf "\n\n${RED}INSTALL FONTS${NC}\n\n"
