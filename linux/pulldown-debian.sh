@@ -43,31 +43,32 @@ printf "\n\n${RED}INSTALL DOTFILES${NC}\n\n"
 
 if [ ! -d "$HOME/Desktop/dotfiles" ];then
 	git clone https://github.com/enthudave/dotfiles ~/Desktop/dotfiles
-	if [ ! -e "$HOME/.zshrc" ];then
-		rm $HOME/.zshrc
-		ln -s ~/Desktop/dotfiles/linux/zsh/zshrc ~/.zshrc
+fi
+
+if [ ! -e "$HOME/.zshrc" ];then
+	rm $HOME/.zshrc
+	ln -s ~/Desktop/dotfiles/linux/zsh/zshrc ~/.zshrc
+fi
+if [ ! -e "$HOME/.zshenv" ];then
+	rm $HOME/.zshenv
+	ln -s ~/Desktop/dotfiles/linux/zsh/zshenv ~/.zshenv
+fi
+if [ ! -d "$HOME/.config" ];then
+	mkdir ~/.config/
+fi
+if [ ! -e "$HOME/.config/nvim" ];then
+	if [ ! -d "$HOME/.vim" ];then
+		mkdir $HOME/.vim
 	fi
-	if [ ! -e "$HOME/.zshenv" ];then
-		rm $HOME/.zshenv
-		ln -s ~/Desktop/dotfiles/linux/zsh/zshenv ~/.zshenv
-	fi
-	if [ ! -d "$HOME/.config" ];then
-		mkdir ~/.config/
-	fi
-	if [ ! -e "$HOME/.config/nvim" ];then
-		if [ ! -d "$HOME/.vim" ];then
-			mkdir $HOME/.vim
-		fi
-		ln -s ~/.vim ~/.config/nvim
-	fi
-	if [ ! -e "$HOME/.config/nvim/init.vim" ];then
-		ln -s ~/Desktop/dotfiles/linux/nvim/vimrc ~/.config/nvim/init.vim
-	fi
+	ln -s ~/.vim ~/.config/nvim
+fi
+if [ ! -e "$HOME/.config/nvim/init.vim" ];then
+	ln -s ~/Desktop/dotfiles/linux/nvim/vimrc ~/.config/nvim/init.vim
 fi
 
 printf "\n\n${RED}INSTALL FONTS${NC}\n\n"
 
-if [ ! -d "$HOME/.local/share/fonts/NerdFonts" ];then
+if [ ! -d "$HOME/Desktop/nerd-fonts" ];then
 	git clone https://github.com/ryanoasis/nerd-fonts ~/Desktop/nerd-fonts
 	cd ~/Desktop/nerd-fonts
 	./install.sh SourceCodePro
