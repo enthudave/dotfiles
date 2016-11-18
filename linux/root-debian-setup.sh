@@ -8,5 +8,3 @@ apt update
 
 apt install sudo
 adduser enthu sudo
-
-wget https://raw.githubusercontent.com/enthudave/dotfiles/master/linux/pulldown-debian.sh ~/Desktop/pulldown-debian.sh
