@@ -33,7 +33,7 @@ echo $(which zsh) | sudo tee -a /etc/shells
 sudo chsh -s $(which zsh)
 
 if [ ! -d "$HOME/.oh-my-zsh" ];then
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	zsh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 printf "\n\n${RED}INSTALL OH-MY-ZSH THEME${NC}\n\n"
