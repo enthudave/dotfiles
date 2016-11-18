@@ -63,7 +63,7 @@ Plug 'scrooloose/syntastic'
 Plug 'dbakker/vim-lint'
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
-Plug 'rdnetto/YCM-Generator'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 Plug 'JuliaLang/julia-vim'
 
