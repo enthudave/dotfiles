@@ -1,7 +1,7 @@
 export TERM="xterm-256color"
 POWERLINE_CONFIG_COMMAND="/home/enthu/.local/bin/powerline-config"
 # Path to your oh-my-zsh installation.
- export ZSH=/home/enthu/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -68,14 +68,16 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -88,6 +90,14 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gvim='pynvim -f "SauceCodePro Nerd Font" 11'
+alias vim='nvim'
+alias e-v='nvim ~/Desktop/dotfiles/osx/vim/vimrc'
+alias e-z='nvim ~/Desktop/dotfiles/osx/zsh/zshrc'
+alias e-ze='nvim ~/Desktop/dotfiles/osx/zsh/zshenv'
+alias dms='docker-machine start'
+alias purge-containers='docker rm $(docker ps -a -q)'
+alias purge-images='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
+
+# for https://github.com/junegunn/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
