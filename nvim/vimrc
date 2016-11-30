@@ -59,11 +59,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'dbakker/vim-lint'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rhysd/devdocs.vim'
+
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'tell-k/vim-autopep8'
 
 Plug 'JuliaLang/julia-vim'
 
@@ -159,6 +163,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore F401,E402"
+" let g:syntastic_html_checkers = ['validator']
+let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'
 
 " YOUCOMPLETEME
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -275,8 +281,8 @@ augroup vimrc_group
 augroup END
 
 augroup vimrc_group
-    autocmd Filetype html set autoindent
-    autocmd FileType html set shiftwidth=2
+    " autocmd Filetype html set autoindent
+    autocmd FileType html,html,javascript set shiftwidth=2
 augroup END
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
@@ -417,7 +423,7 @@ function! GetGitStatus()
     return l:returnvalue
 endfunction
 
-let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)} %{GetGitStatus()}'
+" let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)} %{GetGitStatus()}'
 "set the rightmost section of airline, shows:
 "line-numbers / total-line-numbers | column
 let g:airline_section_z = '%4l% /%L% |%2v'
@@ -446,6 +452,7 @@ augroup vimrc_group
     autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
     autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
     autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
+    autocmd Filetype python map <buffer> <leader>p :call Autopep8()<CR>
 augroup END
 
 nmap <f7> <Plug>AirlineSelectPrevTab
@@ -498,6 +505,7 @@ nnoremap <BS> :
 let mapleader = "\<tab>"
 let maplocalleader = "\<SPACE>"
 nnoremap \ :b#<CR>
+nnoremap <CR> :DevDocsUnderCursor<CR>
 
 "<leader> mappings
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -511,6 +519,9 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>d :DevDocsUnderCursor<CR>
+nnoremap <leader>[ :lpr<CR>
+nnoremap <leader>] :lne<CR>
 
 nnoremap <localleader>, :e ~/Desktop/dotfiles/nvim/vimrc<cr>
 if has("macunix")
