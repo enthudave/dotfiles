@@ -45,6 +45,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -67,9 +68,12 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'rhysd/devdocs.vim'
 
 Plug 'othree/yajs.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/jsdoc-syntax.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+" Plug 'heavenshell/vim-flood'
 
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'tell-k/vim-autopep8'
@@ -238,13 +242,13 @@ endif
 
 if exists('neovim_dot_app')
     echom "setting font"
-    call MacSetFont("Hack", 14)
+    call MacSetFont("SauceCodePro Nerd Font", 11)
 endif
 
 set termencoding=utf-8
 
 set cursorline
-set guifont=Hack:h14
+" set guifont=Hack:h14
 set hidden
 set history=1000
 set incsearch
@@ -262,7 +266,7 @@ set scrolloff=5
 set smartcase
 set undofile
 set wildmenu
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+set tabstop=2 shiftwidth=2 expandtab
 
 if has('autocmd')
     function! ILikeHelpToTheRight()
