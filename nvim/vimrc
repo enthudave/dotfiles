@@ -67,12 +67,15 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-co
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'rhysd/devdocs.vim'
 
+Plug 'ternjs/tern_for_vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/jsdoc-syntax.vim'
-" Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'moll/vim-node'
+Plug 'elzr/vim-json'
 " Plug 'heavenshell/vim-flood'
 
 Plug 'hynek/vim-python-pep8-indent'
@@ -182,6 +185,8 @@ let g:used_javascript_libs = 'react,jquery,underscore,backbone'
 
 let g:jsx_ext_required = 0
 
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
 
 " YOUCOMPLETEME
 let g:ycm_autoclose_preview_window_after_completion = 1
