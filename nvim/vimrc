@@ -193,7 +193,7 @@ let g:ycm_semantic_triggers =  {
             \   'perl' : ['->'],
             \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
             \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'javascript': ['.', 're!\w*'],
+            \   'javascript': ['.'],
             \   'html': ['<', '"', '</', ' '],
             \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
             \   'ruby' : ['.', '::'],
@@ -202,9 +202,10 @@ let g:ycm_semantic_triggers =  {
             \   'haskell' : ['.', 're!.']
             \ }
 
+autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=tsuquyomi#complete
 let g:tsuquyomi_ignore_missing_module = 1
 let g:tsuquyomi_javascript_support = 1
-autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=tsuquyomi#complete
+let g:tsuquyomi_completion_detail = 1
 
 " ULTISNIPS
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
