@@ -535,7 +535,7 @@ nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>[ :lpr<CR>
 nnoremap <leader>] :lne<CR>
 
-nnoremap <localleader>, :e ~/Desktop/vimrc<cr>
+nnoremap <localleader>, :e ~/Desktop/dotfiles/nvim/vimrc<cr>
 if has("macunix")
   nnoremap <localleader>. :e ~/Desktop/dotfiles/osx/zsh/zshrc<cr>
   nnoremap <localleader>/ :e ~/Desktop/dotfiles/osx/zsh/zshenv<cr>
