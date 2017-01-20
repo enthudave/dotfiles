@@ -9,9 +9,9 @@
 "
 "Vim-Plug||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source ~/Desktop/dotfiles/nvim/vimrc
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source ~/Desktop/dotfiles/nvim/vimrc
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -122,8 +122,8 @@ Plug 'tomtom/tlib_vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
 
 if has("macunix")
-"    Plug 'vim-scripts/applescript.vim'
-    Plug 'junegunn/vim-xmark', { 'do': 'make' }
+  "    Plug 'vim-scripts/applescript.vim'
+  Plug 'junegunn/vim-xmark', { 'do': 'make' }
 endif
 
 
@@ -145,12 +145,14 @@ syntax on
 "source your vimrc after you've changed it. And not have your
 "autocmd's defined multiple times.
 augroup vimrc_group
-    autocmd!
+  autocmd!
 augroup END
 
 " VIM-TRAILING-WHITESPACE
 highlight ExtraWhitespace guibg=#ffeeee
-autocmd ColorScheme * highlight ExtraWhitespace guibg=#ffeeee
+augroup vimrc_group
+  autocmd ColorScheme * highlight ExtraWhitespace guibg=#ffeeee
+augroup END
 
 " VIM-SLIME
 let g:slime_python_ipython = 1
@@ -224,21 +226,21 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 
 let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.'],
-            \   'objc' : ['->', '.'],
-            \   'ocaml' : ['.', '#'],
-            \   'cpp,objcpp' : ['->', '.', '::'],
-            \   'perl' : ['->'],
-            \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
-            \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'javascript': ['.'],
-            \   'html': ['<', '"', '</', ' '],
-            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-            \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
-            \   'haskell' : ['.', 're!.']
-            \ }
+      \   'c' : ['->', '.'],
+      \   'objc' : ['->', '.'],
+      \   'ocaml' : ['.', '#'],
+      \   'cpp,objcpp' : ['->', '.', '::'],
+      \   'perl' : ['->'],
+      \   'php' : ['->', '::', '"', "'", 'use ', 'namespace ', '\'],
+      \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+      \   'javascript': ['.'],
+      \   'html': ['<', '"', '</', ' '],
+      \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+      \   'ruby' : ['.', '::'],
+      \   'lua' : ['.', ':'],
+      \   'erlang' : [':'],
+      \   'haskell' : ['.', 're!.']
+      \ }
 
 autocmd FileType javascript,javascript.jsx,jsx setlocal omnifunc=tern#Complete
 " let g:tsuquyomi_ignore_missing_module = 1
@@ -282,11 +284,11 @@ let python_highlight_all = 1
 "
 " Settings|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 if has("macunix")
-    let g:python3_host_prog = '/usr/local/bin/python3'
-    let g:python_host_prog = '/usr/local/bin/python'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:python_host_prog = '/usr/local/bin/python'
 else
-    let g:python3_host_prog = '/usr/bin/python3'
-    let g:python_host_prog = '/usr/bin/python'
+  let g:python3_host_prog = '/usr/bin/python3'
+  let g:python_host_prog = '/usr/bin/python'
 endif
 "
 "if !has('nvim')
@@ -336,24 +338,24 @@ set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 "endif
 
 augroup vimrc_group
-    au BufRead,BufNewFile *.applescript set filetype=applescript
+  au BufRead,BufNewFile *.applescript set filetype=applescript
 augroup END
 
 augroup vimrc_group
-    autocmd FileType vim setlocal foldmethod=marker|set tabstop=2|set shiftwidth=2|set expandtab| set softtabstop=2
-    autocmd FileType c,cpp,objc set tabstop=2|set shiftwidth=2|set noexpandtab| set softtabstop=2
+  autocmd FileType vim setlocal foldmethod=marker|set tabstop=2|set shiftwidth=2|set expandtab| set softtabstop=2
+  autocmd FileType c,cpp,objc set tabstop=2|set shiftwidth=2|set noexpandtab| set softtabstop=2
 augroup END
 
 augroup vimrc_group
-    " autoindent
-    autocmd FileType perl set autoindent|set smartindent
-    " 4 space tabs
-    autocmd FileType perl set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
+  " autoindent
+  autocmd FileType perl set autoindent|set smartindent
+  " 4 space tabs
+  autocmd FileType perl set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
 augroup END
 
 augroup vimrc_group
-    " autocmd Filetype html set autoindent
-    autocmd FileType html,javascript,javascript.jsx,jsx set shiftwidth=2|set softtabstop=2|set tabstop=2|set expandtab
+  " autocmd Filetype html set autoindent
+  autocmd FileType html,javascript,javascript.jsx,jsx set shiftwidth=2|set softtabstop=2|set tabstop=2|set expandtab
 augroup END
 set tags+=./
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
@@ -401,7 +403,7 @@ set background=dark
 " on linux this has been causing problems
 "
 if (has("termguicolors"))
-    set termguicolors
+  set termguicolors
 endif
 
 colorscheme g0tham
@@ -410,18 +412,18 @@ let g:airline_theme = 'g0tham'
 let g:airline_powerline_fonts = 1
 
 let g:airline_mode_map = {
-            \ '__' : '-',
-            \ 'n'  : 'N',
-            \ 'i'  : 'I',
-            \ 'R'  : 'R',
-            \ 'c'  : 'C',
-            \ 'v'  : 'V',
-            \ 'V'  : 'V-LINE',
-            \ '' : 'V-BLOCK',
-            \ 's'  : 'S',
-            \ 'S'  : 'S-LINE',
-            \ '' : 'S-BLOCK',
-            \ }
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V-LINE',
+      \ '' : 'V-BLOCK',
+      \ 's'  : 'S',
+      \ 'S'  : 'S-LINE',
+      \ '' : 'S-BLOCK',
+      \ }
 
 let g:airline_left_sep =''
 let g:airline_right_sep =''
@@ -454,65 +456,65 @@ let g:airline_section_z = '%4l% /%L% |%2v'
 "
 " Keybindings|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
 augroup vimrc_group
-    autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
-    autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
+  autocmd Filetype c nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/c-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><cr><C-w>ja
+  autocmd Filetype cpp nnoremap <buffer> <f5> :! ~/Dropbox/code/shell/cpp-compiler-tmp.sh %<cr>:T /tmp/last-compile-file<cr><C-w>ja
 
-    autocmd FileType applescript nnoremap <buffer> <f5> :w<cr>:T osascript %<cr><cr>
-    autocmd FileType applescript inoremap <buffer> <f5> <esc>:w<cr>:T osascript %<cr><cr>
+  autocmd FileType applescript nnoremap <buffer> <f5> :w<cr>:T osascript %<cr><cr>
+  autocmd FileType applescript inoremap <buffer> <f5> <esc>:w<cr>:T osascript %<cr><cr>
 
-    autocmd FileType typescript nnoremap <buffer> <f5> :w<cr>:! tsc %<cr><cr>
-    autocmd FileType typescript nnoremap <buffer> <f6> :w<cr>:T node %:r.js<cr>
-    autocmd FileType typescript inoremap <buffer> <f5> <esc>:w<cr>:! tsc %<cr><cr>
+  autocmd FileType typescript nnoremap <buffer> <f5> :w<cr>:! tsc %<cr><cr>
+  autocmd FileType typescript nnoremap <buffer> <f6> :w<cr>:T node %:r.js<cr>
+  autocmd FileType typescript inoremap <buffer> <f5> <esc>:w<cr>:! tsc %<cr><cr>
 
-    autocmd FileType javascript nnoremap <buffer> <f5> :TREPLSendFile<cr>
-    autocmd FileType javascript nnoremap <buffer> <f6> :T node %<cr>
+  autocmd FileType javascript nnoremap <buffer> <f5> :TREPLSendFile<cr>
+  autocmd FileType javascript nnoremap <buffer> <f6> :T node %<cr>
 
-    autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
-    autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
-    autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
-    autocmd Filetype python map <buffer> <leader>p :call Autopep8()<CR>
+  autocmd FileType python,julia nnoremap <buffer> <f5> :TREPLSendFile<cr>
+  autocmd FileType python,julia nnoremap <buffer> <f6> :TREPLSend<cr>
+  autocmd FileType python,julia vnoremap <buffer> <f6> :TREPLSend<cr>
+  autocmd Filetype python map <buffer> <leader>p :call Autopep8()<CR>
 augroup END
 
 nmap <f7> <Plug>AirlineSelectPrevTab
 nmap <f9> <Plug>AirlineSelectNextTab
 
 if has ('nvim')
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <f8> <C-\><C-n>:TerminalTogggle<cr>
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <f8> <C-\><C-n>:TerminalTogggle<cr>
 endif
 
 nnoremap <f8> :TerminalTogggle<cr>
 inoremap <f8> <esc>:TerminalTogggle<cr>
 
 function! SplitForTerminal()
-    let l:height = winheight(0) * 3
-    let l:width = winwidth(0)
-    if (l:height > l:width)
-        Tpos horizontal
-        Topen
-        execute "normal! \<C-w>ja"
-    else
-        Tpos vertical
-        Topen
-        execute "normal! \<C-w>la"
-    endif
+  let l:height = winheight(0) * 3
+  let l:width = winwidth(0)
+  if (l:height > l:width)
+    Tpos horizontal
+    Topen
+    execute "normal! \<C-w>ja"
+  else
+    Tpos vertical
+    Topen
+    execute "normal! \<C-w>la"
+  endif
 endfunction
 
 let g:term_is_open = 0
 function! TerminalToggle()
-    if exists('g:term_is_open')
-        if g:term_is_open
-            echom "leaving terminal"
-            let g:term_is_open = 0
-            Tclose
-        else
-            echom "opening terminal"
-            let g:term_is_open = 1
-            call SplitForTerminal()
-        endif
+  if exists('g:term_is_open')
+    if g:term_is_open
+      echom "leaving terminal"
+      let g:term_is_open = 0
+      Tclose
     else
-        echo "no variable 'g:term_is_open' exists"
+      echom "opening terminal"
+      let g:term_is_open = 1
+      call SplitForTerminal()
     endif
+  else
+    echo "no variable 'g:term_is_open' exists"
+  endif
 endfunction
 command! TerminalTogggle call TerminalToggle()
 
@@ -546,20 +548,20 @@ nnoremap <leader>] :lne<CR>
 
 nnoremap <localleader>, :e ~/Desktop/vimrc<cr>
 if has("macunix")
-    nnoremap <localleader>. :e ~/Desktop/dotfiles/osx/zsh/zshrc<cr>
-    nnoremap <localleader>/ :e ~/Desktop/dotfiles/osx/zsh/zshenv<cr>
+  nnoremap <localleader>. :e ~/Desktop/dotfiles/osx/zsh/zshrc<cr>
+  nnoremap <localleader>/ :e ~/Desktop/dotfiles/osx/zsh/zshenv<cr>
 else
-    nnoremap <localleader>. :e ~/Desktop/dotfiles/linux/zsh/zshrc<cr>
-    nnoremap <localleader>/ :e ~/Desktop/dotfiles/linux/zsh/zshenv<cr>
+  nnoremap <localleader>. :e ~/Desktop/dotfiles/linux/zsh/zshrc<cr>
+  nnoremap <localleader>/ :e ~/Desktop/dotfiles/linux/zsh/zshenv<cr>
 endif
 
 
 " Comment a line in the filetype's apropriate way
 augroup vimrc_group
-    autocmd FileType applescript nnoremap <buffer> <localleader>c I--<space><esc>
-    autocmd FileType c,cpp,objc,javascript nnoremap <buffer> <localleader>c I//<space><esc>
-    autocmd FileType python,perl,zsh nnoremap <buffer> <localleader>c I#<space><esc>
-    autocmd FileType vim noremap <buffer> <localleader>c I"<space><esc>
+  autocmd FileType applescript nnoremap <buffer> <localleader>c I--<space><esc>
+  autocmd FileType c,cpp,objc,javascript nnoremap <buffer> <localleader>c I//<space><esc>
+  autocmd FileType python,perl,zsh nnoremap <buffer> <localleader>c I#<space><esc>
+  autocmd FileType vim noremap <buffer> <localleader>c I"<space><esc>
 augroup END
 
 nnoremap <localleader>b :Buffers<CR>
@@ -611,8 +613,8 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 
 " Abbreviations
 augroup vimrc_group
-    autocmd FileType python     :iabbrev <buffer> iff if:<left>
-    autocmd FileType javascript,c,cpp,objc :iabbrev <buffer> iff if ()<left>
+  autocmd FileType python     :iabbrev <buffer> iff if:<left>
+  autocmd FileType javascript,c,cpp,objc :iabbrev <buffer> iff if ()<left>
 augroup END
 "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||}}}
 "###############################################################################
