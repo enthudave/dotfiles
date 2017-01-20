@@ -405,18 +405,8 @@ if (has("termguicolors"))
 endif
 
 colorscheme g0tham
-
-"let g:oceanic_next_terminal_italic = 1
-"let g:oceanic_next_terminal_bold = 1
-"
-"set guioptions-=T  "remove toolbar
-"set guioptions-=t  "remove toolbar
-"set guioptions-=R  "remove right-hand scroll bar
-"set guioptions-=r  "remove right-hand scroll bar
-"set guioptions-=L  "remove left-hand scroll bar
-"set guioptions-=l  "remove left-hand scroll bar
-
 let g:airline_theme = 'g0tham'
+
 let g:airline_powerline_fonts = 1
 
 let g:airline_mode_map = {
