@@ -99,6 +99,3 @@ alias ddsh='eval $(docker-machine env default)'
 alias dms='docker-machine start'
 alias purge-containers='docker rm $(docker ps -a -q)'
 alias purge-images='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
-
-# for https://github.com/junegunn/fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
