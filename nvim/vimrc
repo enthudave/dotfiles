@@ -396,7 +396,7 @@ set tags+=./
 " | |_| | |_| || |
 "  \____|\___/|___|
 "
-" GUI||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
+
 "if !has('gui_running')
 "    set t_Co=256
 "
@@ -416,6 +416,7 @@ set tags+=./
 
 set background=dark
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 " on linux this has been causing problems
 if (has("termguicolors"))
   set termguicolors
