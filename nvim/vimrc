@@ -8,10 +8,9 @@
 "                         |_|            |___/
 "
 "Vim-Plug||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||{{{
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source ~/Desktop/dotfiles/nvim/vimrc
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -45,7 +44,7 @@ Plug '~/Desktop/t3nder.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'ajh17/Spacegray.vim'
 Plug 'whatyouhide/vim-gotham'
-Plug '~/Desktop/belgica.vim'
+Plug 'enthudave/belgica.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Plug 'itchyny/lightline.vim'
@@ -95,7 +94,7 @@ Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 " Plug 'vim-scripts/synmark.vim'
 
-" Plug 'enthudave/Pretty-Vim-Python'
+Plug 'enthudave/Pretty-Vim-Python'
 " Plug 'python-mode/python-mode'
 " Plug 'hdima/python-syntax'
 " Plug 'hynek/vim-python-pep8-indent'
